@@ -9,7 +9,8 @@ CREATE TABLE player
 
 CREATE TABLE link_request
 (
-    id           VARCHAR(6) PRIMARY KEY,
-    minecraft_id UUID      NOT NULL UNIQUE,
-    created_at   TIMESTAMP NOT NULL
+    id                 VARCHAR(6) PRIMARY KEY,
+    minecraft_id       UUID        NOT NULL UNIQUE,
+    minecraft_username VARCHAR(16) NOT NULL,
+    created_at         TIMESTAMP   NOT NULL
 )

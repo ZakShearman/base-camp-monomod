@@ -54,6 +54,8 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+    modImplementation "net.dv8tion:JDA:5.6.1"
+
     modImplementation "org.jooq:jooq:3.19.0"
     modImplementation "org.jooq:jooq-meta:3.19.0"
     modImplementation "org.jooq:jooq-codegen:3.19.0"

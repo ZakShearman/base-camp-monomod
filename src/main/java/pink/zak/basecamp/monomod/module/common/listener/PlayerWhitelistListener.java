@@ -44,6 +44,7 @@ public class PlayerWhitelistListener {
                 linkRequest = context.newRecord(LinkRequest.LINK_REQUEST);
                 linkRequest.setId(this.genId());
                 linkRequest.setMinecraftId(playerId);
+                linkRequest.setMinecraftUsername(handler.getDebugProfile().getName());
                 linkRequest.setCreatedAt(LocalDateTime.now());
                 linkRequest.store();
             }
