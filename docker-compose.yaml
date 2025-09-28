@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: sample
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: dummy_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d

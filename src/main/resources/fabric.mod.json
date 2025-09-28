@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "monomod",
+  "version": "${version}",
+  "name": "monomod",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/monomod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "pink.zak.basecamp.monomod.client.BaseCampMonoModDataGenerator"
+    ],
+    "client": [
+      "pink.zak.basecamp.monomod.client.BaseCampMonoModClient"
+    ],
+    "main": [
+      "pink.zak.basecamp.monomod.BaseCampMonoMod"
+    ]
+  },
+  "mixins": [
+    "monomod.mixins.json",
+    {
+      "config": "monomod.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
