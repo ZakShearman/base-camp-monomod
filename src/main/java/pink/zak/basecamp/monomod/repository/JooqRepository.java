@@ -7,8 +7,6 @@ import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pink.zak.basecamp.monomod.BaseCampMonoMod;
-import pink.zak.basecamp.monomod.model.db.tables.Player;
-import pink.zak.basecamp.monomod.model.db.tables.records.PlayerRecord;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

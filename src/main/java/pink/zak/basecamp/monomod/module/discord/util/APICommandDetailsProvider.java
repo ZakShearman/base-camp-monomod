@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 import pink.zak.basecamp.monomod.module.discord.util.data.stored.SlashCommandInfo;
 import pink.zak.basecamp.monomod.module.discord.util.data.stored.SlashCommandInfoImpl;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -38,6 +37,6 @@ public class APICommandDetailsProvider implements SlashCommandDetailsProvider {
 
     @Override
     public void saveCommands(@NotNull Set<SlashCommandInfo> slashCommandInfos) {
-        return; // no explicit saving needed as they are already pushed to the API
+        // no explicit saving needed as they are already pushed to the API
     }
 }

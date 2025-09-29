@@ -10,11 +10,9 @@ import pink.zak.basecamp.monomod.model.db.tables.LinkRequest;
 import pink.zak.basecamp.monomod.model.db.tables.Player;
 import pink.zak.basecamp.monomod.model.db.tables.records.LinkRequestRecord;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class PlayerWhitelistListener {
     private static final char[] LINK_REQ_ID_CHARS = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};

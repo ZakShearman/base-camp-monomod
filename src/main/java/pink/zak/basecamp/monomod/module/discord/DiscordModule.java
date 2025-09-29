@@ -3,7 +3,6 @@ package pink.zak.basecamp.monomod.module.discord;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
 import pink.zak.basecamp.monomod.module.discord.commands.LinkCommand;

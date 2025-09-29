@@ -11,7 +11,6 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
 import org.jooq.Result;
-import org.jooq.meta.derby.sys.Sys;
 import pink.zak.basecamp.monomod.model.db.tables.LinkRequest;
 import pink.zak.basecamp.monomod.model.db.tables.Player;
 import pink.zak.basecamp.monomod.model.db.tables.records.LinkRequestRecord;
