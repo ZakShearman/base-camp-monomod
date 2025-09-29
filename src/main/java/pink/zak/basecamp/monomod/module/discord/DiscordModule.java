@@ -20,6 +20,10 @@ public class DiscordModule {
     private final @NotNull Guild guild;
 
     public DiscordModule(@NotNull DSLContext repo) {
+        if (BOT_TOKEN == null || BOT_TOKEN.isEmpty()) {
+            throw new NullPointerException("Bot token is null or empty");
+        }
+
         try {
             this.jda = JDABuilder.createDefault(BOT_TOKEN).build().awaitReady();
         } catch (InterruptedException e) {

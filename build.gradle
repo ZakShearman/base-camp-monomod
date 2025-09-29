@@ -44,6 +44,9 @@ repositories {
 
 configurations {
     flywayMigration
+    bundle {
+        transitive = true
+    }
 }
 
 dependencies {
@@ -54,20 +57,32 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "net.dv8tion:JDA:5.6.1"
+    bundle("net.dv8tion:JDA:5.6.1")
+    bundle("org.jooq:jooq:3.19.0")
+    bundle("org.jooq:jooq-meta:3.19.0")
+    bundle("org.jooq:jooq-codegen:3.19.0")
+    bundle("org.flywaydb:flyway-core:${project.flyway_version}")
+    bundle("org.flywaydb:flyway-database-postgresql:${project.flyway_version}")
+    bundle("org.postgresql:postgresql:42.7.8")
 
-    modImplementation "org.jooq:jooq:3.19.0"
-    modImplementation "org.jooq:jooq-meta:3.19.0"
-    modImplementation "org.jooq:jooq-codegen:3.19.0"
+    implementation("net.dv8tion:JDA:5.6.1")
+    implementation("org.jooq:jooq:3.19.0")
+    implementation("org.jooq:jooq-meta:3.19.0")
+    implementation("org.jooq:jooq-codegen:3.19.0")
+    implementation("org.flywaydb:flyway-core:${project.flyway_version}")
+    implementation("org.flywaydb:flyway-database-postgresql:${project.flyway_version}")
+    implementation("org.postgresql:postgresql:42.7.8")
 
-    modImplementation "org.flywaydb:flyway-core:${project.flyway_version}"
-    modImplementation "org.flywaydb:flyway-database-postgresql:${project.flyway_version}"
     flywayMigration "org.flywaydb:flyway-database-postgresql:${project.flyway_version}"
 
-    modImplementation "org.postgresql:postgresql:42.7.8"
-    modRuntimeOnly "org.postgresql:postgresql:42.7.8"
     flywayMigration "org.postgresql:postgresql:42.7.8"
     jooqGenerator "org.postgresql:postgresql:42.7.8"
+}
+
+afterEvaluate {
+    configurations.bundle.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+        dependencies.add('include', "${artifact.moduleVersion.id.group}:${artifact.moduleVersion.id.name}:${artifact.moduleVersion.id.version}")
+    }
 }
 
 processResources {
