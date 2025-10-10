@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
 import pink.zak.basecamp.monomod.module.discord.commands.LinkCommand;
+import pink.zak.basecamp.monomod.module.discord.mclistener.PlayerConnectionListener;
 import pink.zak.basecamp.monomod.module.discord.util.APICommandDetailsProvider;
 import pink.zak.basecamp.monomod.module.discord.util.DiscordCommandBackend;
 import pink.zak.basecamp.monomod.module.discord.util.command.BotCommand;
@@ -41,6 +42,8 @@ public class DiscordModule {
                 commands, Set.of(), this.guild);
 
         this.jda.addEventListener(commandBackend);
+
+        new PlayerConnectionListener(this.jda);
     }
 
     public void shutdown() {
