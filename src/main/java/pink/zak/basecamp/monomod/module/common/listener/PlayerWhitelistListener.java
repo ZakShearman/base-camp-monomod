@@ -22,7 +22,7 @@ public class PlayerWhitelistListener {
 
     public PlayerWhitelistListener(@NotNull DSLContext context) {
         ServerConfigurationConnectionEvents.BEFORE_CONFIGURE.register((handler, server) -> {
-            UUID playerId = handler.getDebugProfile().getId();
+            UUID playerId = handler.getDebugProfile().id();
 
             boolean exists = context.fetchExists(
                     context.selectFrom(Player.PLAYER).where(Player.PLAYER.MINECRAFT_ID.eq(playerId))
@@ -42,7 +42,7 @@ public class PlayerWhitelistListener {
                 linkRequest = context.newRecord(LinkRequest.LINK_REQUEST);
                 linkRequest.setId(this.genId());
                 linkRequest.setMinecraftId(playerId);
-                linkRequest.setMinecraftUsername(handler.getDebugProfile().getName());
+                linkRequest.setMinecraftUsername(handler.getDebugProfile().name());
                 linkRequest.setCreatedAt(LocalDateTime.now());
                 linkRequest.store();
             }
