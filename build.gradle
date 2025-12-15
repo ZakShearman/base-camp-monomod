@@ -8,7 +8,7 @@ buildscript {
 }
 
 plugins {
-    id 'fabric-loom' version '1.11.8'
+    id 'net.fabricmc.fabric-loom-remap' version '1.14.6' // todo change for > mc 1.21.11 since obfuscation will be gone
     id 'maven-publish'
     id 'org.flywaydb.flyway' version '11.13.2'
     id 'nu.studer.jooq' version '10.1.1'
@@ -28,6 +28,12 @@ loom {
         "monomod" {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
+        }
+    }
+
+    runs {
+        server {
+            runDir = "run/server"
         }
     }
 }
@@ -52,7 +58,7 @@ configurations {
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"

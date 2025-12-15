@@ -1,8 +1,8 @@
 package pink.zak.basecamp.monomod.module.common.listener;
 
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
 import org.jooq.Result;
@@ -22,7 +22,7 @@ public class PlayerWhitelistListener {
 
     public PlayerWhitelistListener(@NotNull DSLContext context) {
         ServerConfigurationConnectionEvents.BEFORE_CONFIGURE.register((handler, server) -> {
-            UUID playerId = handler.getDebugProfile().id();
+            UUID playerId = handler.getOwner().id();
 
             boolean exists = context.fetchExists(
                     context.selectFrom(Player.PLAYER).where(Player.PLAYER.MINECRAFT_ID.eq(playerId))
@@ -42,16 +42,16 @@ public class PlayerWhitelistListener {
                 linkRequest = context.newRecord(LinkRequest.LINK_REQUEST);
                 linkRequest.setId(this.genId());
                 linkRequest.setMinecraftId(playerId);
-                linkRequest.setMinecraftUsername(handler.getDebugProfile().name());
+                linkRequest.setMinecraftUsername(handler.getOwner().name());
                 linkRequest.setCreatedAt(LocalDateTime.now());
                 linkRequest.store();
             }
 
             handler.disconnect(
-                    Text.literal("You are not whitelisted!\n\n").formatted(Formatting.RED)
-                            .append(Text.literal("Please use ").formatted(Formatting.RED))
-                            .append(Text.literal("/link " + linkRequest.getId()).formatted(Formatting.RED, Formatting.UNDERLINE))
-                            .append(Text.literal(" on Discord to whitelist yourself").formatted(Formatting.RED))
+                    Component.literal("You are not whitelisted!\n\n").withStyle(ChatFormatting.RED)
+                            .append(Component.literal("Please use ").withStyle(ChatFormatting.RED))
+                            .append(Component.literal("/link " + linkRequest.getId()).withStyle(ChatFormatting.RED, ChatFormatting.UNDERLINE))
+                            .append(Component.literal(" on Discord to whitelist yourself").withStyle(ChatFormatting.RED))
             );
         });
     }
