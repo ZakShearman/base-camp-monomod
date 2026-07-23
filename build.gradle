@@ -8,7 +8,7 @@ buildscript {
 }
 
 plugins {
-    id 'net.fabricmc.fabric-loom-remap' version '1.14.6' // todo change for > mc 1.21.11 since obfuscation will be gone
+    id 'net.fabricmc.fabric-loom' version '1.17-SNAPSHOT'
     id 'maven-publish'
     id 'org.flywaydb.flyway' version '11.13.2'
     id 'nu.studer.jooq' version '10.1.1'
@@ -58,10 +58,9 @@ configurations {
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     bundle("net.dv8tion:JDA:5.6.1")
     bundle("org.jooq:jooq:3.19.0")
@@ -153,7 +152,7 @@ publishing {
 
 flyway {
     configurations = ['flywayMigration']
-    url = 'jdbc:postgresql://localhost:5432/sample'
+    url = 'jdbc:postgresql://localhost:5442/sample'
     user = 'admin'
     password = 'dummy_password'
 }
